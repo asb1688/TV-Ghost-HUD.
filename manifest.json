@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
   "name": "TradingView Ghost HUD",
-  "version": "1.0",
-  "description": "Makes the TradingView sidebar transparent and floating.",
+  "version": "2.0",
+  "description": "Floating transparent screener overlay for TradingView.",
   "content_scripts": [
     {
       "matches": ["https://www.tradingview.com/chart/*"],
+      "js": ["ghost.js"],
       "css": ["style.css"],
       "run_at": "document_idle"
     }
