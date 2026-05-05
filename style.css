@@ -1,40 +1,125 @@
-/* ============================================================
-   TradingView Ghost HUD — style.css (FIXED)
-   ============================================================ */
-
-/* --- Right Sidebar --- */
-.layout__area--right {
-  opacity: 0.15;
-  transition: opacity 0.3s ease;
+#ghost-hud {
+  position: fixed;
+  bottom: 60px;
+  left: 20px;
+  z-index: 9999;
+  width: 220px;
+  background: rgba(10, 10, 15, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-family: 'Inter', 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+  color: #e0e0e0;
+  cursor: grab;
+  user-select: none;
+  transition: opacity 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.4);
 }
 
-.layout__area--right:hover {
-  opacity: 1;
-}
-
-/* --- Left Toolbar --- */
-.layout__area--left {
-  opacity: 0.15;
-  transition: opacity 0.3s ease;
-}
-
-.layout__area--left:hover {
-  opacity: 1;
-}
-
-/* --- Top Bar --- */
-.layout__area--top {
-  opacity: 0.2;
-  transition: opacity 0.3s ease;
-}
-
-.layout__area--top:hover {
-  opacity: 1;
-}
-
-/* --- Chart canvas: always fully visible --- */
-.chart-markup-table,
-.chart-container,
-canvas {
+#ghost-hud:hover {
   opacity: 1 !important;
+  box-shadow: 0 4px 32px rgba(0,0,0,0.6);
+}
+
+#ghost-hud.dragging {
+  cursor: grabbing;
+  opacity: 1 !important;
+}
+
+#ghost-hud-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+#ghost-hud-title {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+}
+
+#ghost-hud-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+#ghost-opacity-slider {
+  width: 55px;
+  height: 3px;
+  accent-color: #3a7bd5;
+  cursor: pointer;
+}
+
+#ghost-hud-close {
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.3);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+#ghost-hud-close:hover {
+  color: rgba(255,255,255,0.8);
+}
+
+#ghost-hud-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ghost-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 6px;
+  align-items: center;
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.ghost-row:last-child {
+  border-bottom: none;
+}
+
+.ghost-symbol {
+  font-weight: 600;
+  font-size: 11px;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+.ghost-price {
+  font-size: 11px;
+  color: #b0b8c8;
+  text-align: right;
+}
+
+.ghost-change {
+  font-size: 10px;
+  font-weight: 600;
+  text-align: right;
+  min-width: 44px;
+}
+
+.ghost-change.up   { color: #26a69a; }
+.ghost-change.down { color: #ef5350; }
+.ghost-change.flat { color: #888; }
+
+#ghost-hud-empty {
+  color: rgba(255,255,255,0.3);
+  font-size: 11px;
+  text-align: center;
+  padding: 8px 0;
 }
