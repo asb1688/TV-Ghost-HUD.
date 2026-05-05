@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "TradingView Ghost HUD",
+  "version": "1.0",
+  "description": "Makes the TradingView sidebar transparent and floating.",
+  "content_scripts": [
+    {
+      "matches": ["https://www.tradingview.com/chart/*"],
+      "css": ["style.css"]
+    }
+  ]
+}
