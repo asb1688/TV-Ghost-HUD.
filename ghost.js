@@ -19,7 +19,7 @@
     if (document.getElementById('ghost-hud')) return;
     createHUD();
     startRefresh();
-    collapseNativeSidebar();
+   // collapseNativeSidebar();
   }
 
   // ─── Collapse the native right sidebar ────────────────────
