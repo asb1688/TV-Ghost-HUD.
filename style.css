@@ -1,66 +1,40 @@
 /* ============================================================
-   TradingView Ghost HUD — style.css
-   Targets: Right sidebar, left toolbar, bottom panel
+   TradingView Ghost HUD — style.css (FIXED)
    ============================================================ */
 
-/* --- Right Sidebar (drawing tools, watchlist panel) --- */
+/* --- Right Sidebar --- */
 .layout__area--right {
   opacity: 0.15;
-  background: transparent !important;
-  backdrop-filter: blur(2px);
-  transition: opacity 0.25s ease, backdrop-filter 0.25s ease;
-
-  /* CRITICAL: lets click-through to chart when ghosted */
-  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .layout__area--right:hover {
   opacity: 1;
-  backdrop-filter: none;
-  pointer-events: auto; /* restore clicks on hover */
 }
 
-/* --- Left Toolbar (indicators, drawing tools bar) --- */
+/* --- Left Toolbar --- */
 .layout__area--left {
   opacity: 0.15;
-  background: transparent !important;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .layout__area--left:hover {
   opacity: 1;
-  pointer-events: auto;
 }
 
-/* --- Top Bar (symbol search, timeframes) --- */
+/* --- Top Bar --- */
 .layout__area--top {
   opacity: 0.2;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
+  transition: opacity 0.3s ease;
 }
 
 .layout__area--top:hover {
   opacity: 1;
-  pointer-events: auto;
 }
 
-/* --- Bottom Panel (volume, RSI sub-charts) --- */
-.layout__area--bottom {
-  opacity: 0.15;
-  transition: opacity 0.25s ease;
-  pointer-events: none;
-}
-
-.layout__area--bottom:hover {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* --- Chart canvas itself: always fully visible --- */
+/* --- Chart canvas: always fully visible --- */
 .chart-markup-table,
 .chart-container,
 canvas {
   opacity: 1 !important;
-  pointer-events: auto !important;
 }
