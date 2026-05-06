@@ -1,47 +1,38 @@
 (function () {
   'use strict';
 
-  const INIT_DELAY = 3000;
-  const DEFAULT_OPACITY = 0.15;
-
-  setTimeout(init, INIT_DELAY);
-
-  function init() {
-    if (document.getElementById('ghost-hud')) return;
-    applyGhostToSidebar();
-    createToggle();
-  }
-
-  function applyGhostToSidebar() {
+  setTimeout(function() {
+    
+    // Find the sidebar
     const sidebar = document.querySelector('.layout__area--right');
     if (!sidebar) return;
 
+    // Just make it transparent, that's it
+    sidebar.style.opacity = '0.2';
     sidebar.style.transition = 'opacity 0.3s ease';
-    sidebar.style.opacity = DEFAULT_OPACITY;
 
-    sidebar.addEventListener('mouseenter', () => {
-      sidebar.style.opacity = '1';
-    });
-
-    sidebar.addEventListener('mouseleave', () => {
-      const val = document.getElementById('ghost-slider');
-      sidebar.style.opacity = val ? val.value / 100 : DEFAULT_OPACITY;
-    });
-  }
-
-  function createToggle() {
-    const hud = document.createElement('div');
-    hud.id = 'ghost-hud';
-    hud.innerHTML = `
-      <span>⚡ GHOST</span>
-      <input id="ghost-slider" type="range" min="5" max="100" value="${DEFAULT_OPACITY * 100}" title="Opacity">
+    // Create the slider control
+    const control = document.createElement('div');
+    control.style.cssText = `
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      z-index: 2147483647;
+      background: rgba(0,0,0,0.7);
+      border-radius: 8px;
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: sans-serif;
+      font-size: 11px;
+      color: white;
     `;
-    document.body.appendChild(hud);
+    control.innerHTML = `
+      ⚡ Ghost <input id="ghost-slider" type="range" min="5" max="100" value="20" style="width:80px; accent-color:#3a7bd5;">
+    `;
+    document.body.appendChild(control);
 
-    document.getElementById('ghost-slider').addEventListener('input', (e) => {
-      const sidebar = document.querySelector('.layout__area--right');
-      if (sidebar) sidebar.style.opacity = e.target.value / 100;
-    });
-  }
-
-})();
+    // Slider controls opacity
+    document.getElementById('ghost-slider').addEventListener('input', function() {
+      sidebar.sty
