@@ -23,18 +23,7 @@
   }
 
   // ─── Collapse the native right sidebar ────────────────────
-  function collapseNativeSidebar() {
-    // Try to find and hide the screener/right panel
-    const selectors = [
-      '.layout__area--right',
-      '[data-name="screener-sidebar"]',
-      '.right-toolbar',
-    ];
-    selectors.forEach(sel => {
-      const el = document.querySelector(sel);
-      if (el) el.style.display = 'none';
-    });
-  }
+  function collapseNativeSidebar() {}
 
   // ─── Build the HUD DOM ────────────────────────────────────
   function createHUD() {
