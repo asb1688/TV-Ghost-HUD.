@@ -1,17 +1,10 @@
 (function () {
   'use strict';
 
+  let targetOpacity = 0.2;
+
   setTimeout(function() {
-    
-    // Find the sidebar
-    const sidebar = document.querySelector('.layout__area--right');
-    if (!sidebar) return;
-
-    // Just make it transparent, that's it
-    sidebar.style.opacity = '0.2';
-    sidebar.style.transition = 'opacity 0.3s ease';
-
-    // Create the slider control
+    // Create slider control
     const control = document.createElement('div');
     control.style.cssText = `
       position: fixed;
@@ -28,11 +21,21 @@
       font-size: 11px;
       color: white;
     `;
-    control.innerHTML = `
-      ⚡ Ghost <input id="ghost-slider" type="range" min="5" max="100" value="20" style="width:80px; accent-color:#3a7bd5;">
-    `;
+    control.innerHTML = `⚡ Ghost <input id="ghost-slider" type="range" min="5" max="100" value="20" style="width:80px; accent-color:#3a7bd5;">`;
     document.body.appendChild(control);
 
-    // Slider controls opacity
     document.getElementById('ghost-slider').addEventListener('input', function() {
-      sidebar.sty
+      targetOpacity = this.value / 100;
+    });
+
+    // Reapply every 500ms so TradingView can't override it
+    setInterval(function() {
+      const sidebar = document.querySelector('.layout__area--right');
+      if (sidebar) {
+        sidebar.style.setProperty('opacity', targetOpacity, 'important');
+      }
+    }, 500);
+
+  }, 3000);
+
+})();
